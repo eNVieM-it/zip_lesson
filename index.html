@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Цифрова експедиція: Таємниці стиснення даних | 8 клас Інформатика</title>
+  <!-- Google Fonts: Cormorant Garamond (Editorial Serif for headings) & Plus Jakarta Sans (Clean sans-serif for UI) & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="images_base64.js"></script>
+</head>
+<body>
+
+  <!-- TOP HEADER / EXPEDITION HUD -->
+  <header class="hud-header">
+    <div class="hud-container">
+      <div class="hud-brand">
+        <span class="hud-badge">Місія 8-й клас // § 2.2</span>
+        <h1 class="hud-title">Цифрова експедиція: Таємниці стиснення</h1>
+      </div>
+      
+      <div class="hud-stats">
+        <div class="stat-pill">
+          <span class="stat-label">Звання:</span>
+          <span class="stat-value" id="userRank">Стажер-архіваріус</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-label">Бали XP:</span>
+          <span class="stat-value highlight" id="scoreDisplay">0 / 120</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-info">
+            <span>Прогрес місії</span>
+            <span id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <button class="reset-btn" id="resetBtn" title="Скинути прогрес">⟲ Скинути</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="expedition-nav">
+    <div class="nav-container">
+      <a href="#block1" class="nav-item active" data-target="block1">
+        <span class="step-num">01</span>
+        <span class="step-name">Інтро & Диск</span>
+      </a>
+      <a href="#block2" class="nav-item" data-target="block2">
+        <span class="step-num">02</span>
+        <span class="step-name">Формати & Софт</span>
+      </a>
+      <a href="#block3" class="nav-item" data-target="block3">
+        <span class="step-num">03</span>
+        <span class="step-name">Симулятор 7-Zip</span>
+      </a>
+      <a href="#block4" class="nav-item" data-target="block4">
+        <span class="step-num">04</span>
+        <span class="step-name">Контекстне меню</span>
+      </a>
+      <a href="#block5" class="nav-item" data-target="block5">
+        <span class="step-num">05</span>
+        <span class="step-name">Лабораторія K</span>
+      </a>
+      <a href="#block6" class="nav-item" data-target="block6">
+        <span class="step-num">06</span>
+        <span class="step-name">Екзамен & Задачі</span>
+      </a>
+      <a href="#block7" class="nav-item" data-target="block7">
+        <span class="step-num">07</span>
+        <span class="step-name">Сертифікат & ПР№2</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN EXPEDITION CONTENT -->
+  <main class="main-content">
+
+    <!-- ==================== БЛОК 1. ІНТРО ТА АКТУАЛІЗАЦІЯ ==================== -->
+    <section id="block1" class="content-block">
+      <div class="section-tag">Блок 01 // Виклик адміна</div>
+      <h2 class="section-title">Аварія на сервері: Диск переповнено!</h2>
+      <p class="section-intro">
+        Ти системний адміністратор шкільного хабу даних. Залишилося лише <strong>120 МБ</strong> вільного місця, а поштовий шлюз категорично відхиляє пересилання папки вагою <strong>2 ГБ</strong>. До того ж потрібно захистити приватні файли від чужих очей.
+      </p>
+
+      <div class="terminal-card">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title">admin@datacenter:~$ sys-alert.sh</span>
+        </div>
+        <div class="terminal-body">
+          <p class="term-alert">⚠️ WARNING: Volume /dev/sda1 is at 98.4% capacity!</p>
+          <p>Потрібно терміново застосувати <strong>архівацію</strong> та <strong>стиснення без втрат даних (lossless)</strong>. Перш ніж увімкнути компресор, перевір свої базові знання.</p>
+        </div>
+      </div>
+
+      <div class="quiz-challenge" id="quizBlock1">
+        <h3 class="subsection-title">Міні-челендж на старті (2 запитання)</h3>
+        
+        <!-- Питання 1 -->
+        <div class="question-card" id="q1_wrap">
+          <div class="q-header">
+            <span class="q-index">Питання 1 з 2</span>
+            <span class="q-xp">+10 XP</span>
+          </div>
+          <p class="q-text">Що автоматично робить Google Диск, коли ти вибираєш завантажити цілу папку або групу виділених файлів на свій комп'ютер?</p>
+          <div class="q-options">
+            <label class="q-option">
+              <input type="radio" name="q1" value="a">
+              <span class="opt-box"></span>
+              <span class="opt-text">Конвертує кожен файл окремо у формат PDF</span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="q1" value="b">
+              <span class="opt-box"></span>
+              <span class="opt-text">Пакує всі файли в єдиний архівний файл формату <strong>ZIP</strong></span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="q1" value="c">
+              <span class="opt-box"></span>
+              <span class="opt-text">Видаляє вихідні файли з хмари без підтвердження</span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="q1" value="d">
+              <span class="opt-box"></span>
+              <span class="opt-text">Створює саморозпаковний файл .exe</span>
+            </label>
+          </div>
+          <div class="q-feedback" id="q1_fb"></div>
+          <button class="action-btn" onclick="checkQ1()">Перевірити відповідь</button>
+        </div>
+
+        <!-- Питання 2 -->
+        <div class="question-card" id="q2_wrap">
+          <div class="q-header">
+            <span class="q-index">Питання 2 з 2</span>
+            <span class="q-xp">+10 XP</span>
+          </div>
+          <p class="q-text">Чому для архівування програм (.exe) або документів (.docx, .txt) <strong>категорично заборонено</strong> застосовувати стиснення із частковою втратою даних (lossy)?</p>
+          <div class="q-options">
+            <label class="q-option">
+              <input type="radio" name="q2" value="a">
+              <span class="opt-box"></span>
+              <span class="opt-text">Втрата навіть одного байта чи символу коду призведе до повної непрацездатності програми або спотворення тексту</span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="q2" value="b">
+              <span class="opt-box"></span>
+              <span class="opt-text">Тому що файли docx і так не містять жодних літер</span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="q2" value="c">
+              <span class="opt-box"></span>
+              <span class="opt-text">Стиснення із втратами доступне виключно за платною підпискою</span>
+            </label>
+          </div>
+          <div class="q-feedback" id="q2_fb"></div>
+          <button class="action-btn" onclick="checkQ2()">Перевірити відповідь</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== БЛОК 2. ТЕОРІЯ БЕЗ НУДЬГИ ==================== -->
+    <section id="block2" class="content-block">
+      <div class="section-tag">Блок 02 // Картотека та Арсенал</div>
+      <h2 class="section-title">Архіватори та Формати стиснення</h2>
+      <p class="section-intro">
+        <strong>Архіватор</strong> — спеціальна службова програма, що здійснює пакування файлів та папок в один архівний файл зі стисненням <em>без втрат інформації</em> або без стиснення.
+      </p>
+
+      <div class="sub-heading">Інтерактивна картотека форматів (натискай на картки):</div>
+      <div class="format-grid" id="formatGrid">
+        <!-- ZIP -->
+        <div class="format-card" onclick="toggleFormat(this)">
+          <div class="fmt-badge">ZIP</div>
+          <div class="fmt-name">Стандарт Інтернету</div>
+          <div class="fmt-preview">Найпопулярніший формат, підтримується всіма ОС без встановлення сторонніх програм.</div>
+          <div class="fmt-details">
+            <p><strong>Особливість:</strong> Універсальність. Будь-яка система (Windows, macOS, Linux, Android) вміє відкривати ZIP за замовчуванням. Використовується Google Диском.</p>
+            <span class="tag">Швидкий</span> <span class="tag">Універсальний</span>
+          </div>
+        </div>
+
+        <!-- 7z -->
+        <div class="format-card" onclick="toggleFormat(this)">
+          <div class="fmt-badge">7z</div>
+          <div class="fmt-name">Максимальне стиснення</div>
+          <div class="fmt-preview">Сучасний відкритий формат з потужними алгоритмами (LZMA / LZMA2).</div>
+          <div class="fmt-details">
+            <p><strong>Особливість:</strong> Забезпечує найвищий коефіцієнт стиснення. Підтримує 256-бітне AES-шифрування не лише даних, а й самих імен файлів!</p>
+            <span class="tag">Open Source</span> <span class="tag">AES-256</span>
+          </div>
+        </div>
+
+        <!-- RAR -->
+        <div class="format-card" onclick="toggleFormat(this)">
+          <div class="fmt-badge">RAR</div>
+          <div class="fmt-name">Формат WinRAR</div>
+          <div class="fmt-preview">Пропрієтарний формат, відомий стійкістю до пошкоджень та даними відновлення.</div>
+          <div class="fmt-details">
+            <p><strong>Особливість:</strong> Створення потребує ліцензійної програми WinRAR, проте безкоштовні архіватори (7-Zip) можуть без проблем читати та видобувати з нього файли.</p>
+            <span class="tag">Recovery Record</span>
+          </div>
+        </div>
+
+        <!-- SFX -->
+        <div class="format-card special-sfx" onclick="toggleFormat(this)">
+          <div class="fmt-badge">SFX (.exe)</div>
+          <div class="fmt-name">Самовидобувний архів</div>
+          <div class="fmt-preview">SelF-eXtracting — архів + вбудований міні-модуль розпакування.</div>
+          <div class="fmt-details">
+            <p><strong>Суперсила:</strong> Отримувачу <strong>НЕ потрібен жоден архіватор</strong> на ПК! Достатньо просто запустити файл із розширенням <code>.exe</code>, і він сам розархівує свій вміст.</p>
+            <span class="tag highlight">Без архіватора</span> <span class="tag">.EXE модуль</span>
+          </div>
+        </div>
+
+        <!-- TAR -->
+        <div class="format-card" onclick="toggleFormat(this)">
+          <div class="fmt-badge">TAR</div>
+          <div class="fmt-name">Tape Archive (Linux)</div>
+          <div class="fmt-preview">Історичний контейнер: об'єднує сотні файлів в один без власного стиснення.</div>
+          <div class="fmt-details">
+            <p><strong>Особливість:</strong> Найчастіше комбінується зі стисненням GZIP, утворюючи популярні в Linux та серверах архіви <code>.tar.gz</code> або <code>.tgz</code>.</p>
+            <span class="tag">UNIX/Linux</span>
+          </div>
+        </div>
+
+        <!-- CAB / ARJ -->
+        <div class="format-card" onclick="toggleFormat(this)">
+          <div class="fmt-badge">CAB / ARJ</div>
+          <div class="fmt-name">Системні та ретро</div>
+          <div class="fmt-preview">Cabinet (Windows дистрибутиви) та класичний ARJ часів DOS.</div>
+          <div class="fmt-details">
+            <p><strong>Особливість:</strong> CAB використовується інсталяторами Microsoft Windows для пакування оновлень системи; 7-Zip легко переглядає їхній вміст.</p>
+            <span class="tag">Системний</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Підручник значки (Мал 2.10) -->
+      <div class="textbook-reference">
+        <div class="ref-text">
+          <span class="ref-title">📖 З підручника (мал. 2.10 «Значки архівних файлів»):</span>
+          <p>Кожен встановлений архіватор прив'язує до типів архівів власні фірмові значки.</p>
+        </div>
+        <div class="ref-img-wrap">
+          <img id="imgFig210" alt="Значки архівних файлів мал 2.10" class="ref-img">
+        </div>
+      </div>
+
+      <!-- Арсенал програм -->
+      <h3 class="subsection-title" style="margin-top: 36px;">Популярні програми-архіватори</h3>
+      <div class="archiver-shelf">
+        <div class="shelf-item">
+          <div class="prog-icon prog-7z">7z</div>
+          <div class="prog-info">
+            <h4>7-Zip</h4>
+            <span class="prog-lic">Free & Open Source</span>
+            <p>Головний герой нашого уроку. Безкоштовний, без реклами, підтримує понад 30 форматів видобування.</p>
+          </div>
+        </div>
+
+        <div class="shelf-item">
+          <div class="prog-icon prog-wz">WZ</div>
+          <div class="prog-info">
+            <h4>WinZip</h4>
+            <span class="prog-lic">Комерційний</span>
+            <p>Один із перших класичних архіваторів для Windows під формат ZIP.</p>
+          </div>
+        </div>
+
+        <div class="shelf-item">
+          <div class="prog-icon prog-pz">PZ</div>
+          <div class="prog-info">
+            <h4>PeaZip</h4>
+            <span class="prog-lic">Free / Open Source</span>
+            <p>Зручний графічний архіватор на відкритому коді зі стильним інтерфейсом.</p>
+          </div>
+        </div>
+
+        <div class="shelf-item">
+          <div class="prog-icon prog-bz">BZ</div>
+          <div class="prog-info">
+            <h4>Bandizip</h4>
+            <span class="prog-lic">Freemium</span>
+            <p>Швидкісний архіватор з функцією розумного розпакування та підтримкою багатоядерності.</p>
+          </div>
+        </div>
+
+        <!-- Android Focus -->
+        <div class="shelf-item android-spotlight">
+          <div class="prog-icon prog-za">
+            <img id="imgZarchiver" alt="ZArchiver" style="width: 38px; height: 38px; object-fit: contain;">
+          </div>
+          <div class="prog-info">
+            <h4>ZArchiver (Android)</h4>
+            <span class="prog-lic">Мобільний хіт • 100M+ завантажень</span>
+            <p>Мобільний аналог 7-Zip для смартфонів. Вміє створювати 7z/zip, відкривати паролі та керувати архівами в дорозі.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== БЛОК 3. СИМУЛЯТОР ІНТЕРФЕЙСУ 7-ZIP ==================== -->
+    <section id="block3" class="content-block">
+      <div class="section-tag">Блок 03 // Інтерактивний тренажер</div>
+      <h2 class="section-title">Лабораторія інтерфейсу: 7-Zip File Manager</h2>
+      <p class="section-intro">
+        Опануй головне вікно 7-Zip та діалогове вікно параметрів архівації (мал. 2.11 та 2.12 підручника). Клікай по елементах для вивчення, а потім налаштуй власний архів!
+      </p>
+
+      <!-- ТАБИ РЕЖИМІВ СИМУЛЯТОРА -->
+      <div class="sim-tab-header">
+        <button class="sim-tab-btn active" onclick="switchSimTab('mainWin')">1. Головне вікно 7-Zip (мал. 2.11)</button>
+        <button class="sim-tab-btn" onclick="switchSimTab('dialogWin')">2. Діалог «Додати до архіву» (мал. 2.12)</button>
+      </div>
+
+      <!-- ВКЛАДКА 1: ГОЛОВНЕ ВІКНО -->
+      <div id="simTabMainWin" class="sim-tab-pane active">
+        <div class="os-window">
+          <div class="os-window-titlebar">
+            <span class="os-win-icon">🗜️</span>
+            <span class="os-win-title">7-Zip File Manager — G:\lesson\Розділ 2\Пункт 2.2\</span>
+            <div class="os-win-controls">
+              <span>🗕</span><span>🗖</span><span>✕</span>
+            </div>
+          </div>
+
+          <!-- МЕНЮ (Рядок 6) -->
+          <div class="os-menubar inspectable" data-tip="6. Рядок меню: Файл, Редагувати, Вигляд, Закладки, Сервіс, Довідка">
+            <span>Файл</span><span>Редагувати</span><span>Вигляд</span><span>Закладки</span><span>Сервіс</span><span>Довідка</span>
+          </div>
+
+          <!-- ПАНЕЛЬ ІНСТРУМЕНТІВ (Рядок 5) -->
+          <div class="os-toolbar inspectable" data-tip="5. Панель інструментів: Додати, Видобути, Тестувати, Копіювати, Перемістити, Видалити, Інфо">
+            <button class="tb-btn" onclick="openAddDialogSim()"><span class="tb-ico">➕</span>Додати</button>
+            <button class="tb-btn" onclick="triggerSimAction('extract')"><span class="tb-ico">📂</span>Видобути</button>
+            <button class="tb-btn" onclick="triggerSimAction('test')"><span class="tb-ico">🧪</span>Тестувати</button>
+            <button class="tb-btn" onclick="triggerSimAction('copy')"><span class="tb-ico">📋</span>Копіювати</button>
+            <button class="tb-btn" onclick="triggerSimAction('move')"><span class="tb-ico">✂️</span>Перемістити</button>
+            <button class="tb-btn" onclick="triggerSimAction('delete')"><span class="tb-ico">🗑️</span>Видалити</button>
+            <button class="tb-btn" onclick="triggerSimAction('info')"><span class="tb-ico">ℹ️</span>Інфо</button>
+          </div>
+
+          <!-- РЯДОК АДРЕСИ (Рядок 3 та 4) -->
+          <div class="os-addressbar inspectable" data-tip="3. Рядок адреси & 4. Кнопка вищого рівня: показує поточну папку та дозволяє швидку навігацію">
+            <button class="up-btn" title="Кнопка переходу до папки вищого рівня (4)">📁▲ Рівень вгору</button>
+            <input type="text" class="address-input" value="G:\lesson\Розділ 2\Пункт 2.2\Малюнки\" readonly>
+          </div>
+
+          <!-- РОБОЧЕ ПОЛЕ (Рядок 2) -->
+          <div class="os-workspace inspectable" data-tip="2. Робоче поле: список файлів і папок у поточній директорії з розмірами та атрибутами">
+            <table class="file-table">
+              <thead>
+                <tr>
+                  <th>Ім'я</th>
+                  <th>Розмір</th>
+                  <th>Змінено</th>
+                  <th>Атрибути</th>
+                </tr>
+              </thead>
+              <tbody id="fileTableBody">
+                <tr class="selected-row" onclick="toggleRowSelect(this)">
+                  <td>🖼️ photo_kyiv.bmp</td>
+                  <td>3 145 780 Б</td>
+                  <td>27.09.2026 14:10</td>
+                  <td>A</td>
+                </tr>
+                <tr class="selected-row" onclick="toggleRowSelect(this)">
+                  <td>📄 text_report.doc</td>
+                  <td>1 048 576 Б</td>
+                  <td>27.09.2026 15:30</td>
+                  <td>A</td>
+                </tr>
+                <tr onclick="toggleRowSelect(this)">
+                  <td>📦 backup_archive.7z</td>
+                  <td>420 112 Б</td>
+                  <td>26.09.2026 18:00</td>
+                  <td>A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- РЯДОК СТАНУ (Рядок 1) -->
+          <div class="os-statusbar inspectable" data-tip="1. Рядок стану: показує кількість вибраних об'єктів та їхній сумарний обсяг у байтах">
+            <span id="statusSelectedInfo">Вибрано 2 об'єкти (4 194 356 Б)</span>
+            <span>Всього: 3 об'єкти (4 614 468 Б)</span>
+          </div>
+        </div>
+
+        <div class="interactive-guide-box">
+          <div class="guide-title">🔍 Режим огляду малюнка 2.11:</div>
+          <p id="guideDetailText">Клацни мишкою на будь-яку зону вікна вище (Панель, Рядок адреси, Робоче поле, Рядок стану, Меню), щоб дізнатися її назву за підручником!</p>
+          <div class="fig-compare-btn-wrap">
+            <button class="action-btn-secondary" onclick="toggleOriginalFig('fig211')">Показати оригінальний Мал. 2.11 з книги</button>
+          </div>
+          <div id="fig211Holder" class="original-fig-holder" style="display: none;">
+            <img id="imgFig211" alt="Вікно 7-zip мал 2.11" class="ref-img-large">
+          </div>
+        </div>
+      </div>
+
+      <!-- ВКЛАДКА 2: ДІАЛОГ "ДОДАТИ ДО АРХІВУ" -->
+      <div id="simTabDialogWin" class="sim-tab-pane">
+        <div class="modal-dialog-sim">
+          <div class="os-window-titlebar">
+            <span class="os-win-icon">📦</span>
+            <span class="os-win-title">Додати до архіву (мал. 2.12)</span>
+            <div class="os-win-controls"><span>✕</span></div>
+          </div>
+
+          <div class="dialog-grid">
+            <!-- Ліва колонка -->
+            <div class="dialog-col">
+              <div class="form-group">
+                <label>Ім'я архіву:</label>
+                <div class="input-with-btn">
+                  <input type="text" id="dlgArchiveName" value="фотографії.7z">
+                  <button class="small-btn">Огляд...</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Формат архіву:</label>
+                <select id="dlgFormat" onchange="updateSimCompressionStats()">
+                  <option value="7z" selected>7z (Найкраще стиснення)</option>
+                  <option value="zip">zip (Універсальний)</option>
+                  <option value="tar">tar (Без стиснення)</option>
+                  <option value="wim">wim (Образ диска)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Ступінь стиснення: <span id="compLevelBadge" class="level-badge">Нормальне</span></label>
+                <input type="range" id="dlgCompLevel" min="0" max="5" value="3" oninput="onCompSliderChange(this.value)">
+                <div class="slider-marks">
+                  <span>0: Без стиснення</span>
+                  <span>1: Найшвидше</span>
+                  <span>2: Швидке</span>
+                  <span>3: Нормальне</span>
+                  <span>4: Максимальне</span>
+                  <span>5: Ультра</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Метод стиснення:</label>
+                <select id="dlgMethod">
+                  <option value="LZMA2" selected>LZMA2 (Багатопотоковий)</option>
+                  <option value="LZMA">LZMA (Класичний)</option>
+                  <option value="PPMd">PPMd (Для тексту)</option>
+                  <option value="BZip2">BZip2</option>
+                  <option value="Deflate">Deflate</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Розбити на томи (байт):</label>
+                <select id="dlgSplit">
+                  <option value="0">Без розбиття</option>
+                  <option value="10MB">10M - Пошта</option>
+                  <option value="700MB">700M - CD-диск</option>
+                  <option value="4092MB">4092M - FAT32</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Права колонка -->
+            <div class="dialog-col">
+              <div class="form-group checkbox-block">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="dlgSfx" onchange="updateSimCompressionStats()">
+                  <span class="chk-box"></span>
+                  <span class="chk-text"><strong>Створити SFX-архів</strong> (.exe саморозпаковний)</span>
+                </label>
+              </div>
+
+              <div class="dialog-box-enc">
+                <div class="enc-title">🔒 Шифрування (Захист даних):</div>
+                <div class="form-group">
+                  <label>Уведіть пароль:</label>
+                  <input type="password" id="dlgPass1" placeholder="Введіть секретний пароль" oninput="updateSimCompressionStats()">
+                </div>
+                <div class="form-group">
+                  <label>Повторіть пароль:</label>
+                  <input type="password" id="dlgPass2" placeholder="Повторіть пароль">
+                </div>
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="dlgEncryptNames">
+                  <span class="chk-box"></span>
+                  <span class="chk-text">Шифрувати імена файлів (тільки 7z)</span>
+                </label>
+              </div>
+
+              <!-- Динамічний калькулятор співвідношення -->
+              <div class="compression-formula-card">
+                <div class="formula-title">📊 Ефект вибраних налаштувань:</div>
+                <div class="formula-line">
+                  <span>Орієнтовний розмір:</span>
+                  <strong id="simEstSize">1.25 МБ (було 4.0 МБ)</strong>
+                </div>
+                <div class="formula-line">
+                  <span>Швидкість створення:</span>
+                  <span id="simEstSpeed">⚡ Середня</span>
+                </div>
+                <div class="formula-line">
+                  <span>Тип файлу на виході:</span>
+                  <code id="simEstExt">.7z</code>
+                </div>
+                <div class="formula-hint" id="simRuleHint">
+                  💡 <em>«Більше стиснення = менший розмір файлу, але процес триває довше»</em>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dialog-actions">
+            <button class="action-btn" onclick="executeSimArchive()">Створити тестовий архів</button>
+            <button class="action-btn-secondary" onclick="toggleOriginalFig('fig212')">Оригінал мал. 2.12</button>
+          </div>
+        </div>
+
+        <div id="fig212Holder" class="original-fig-holder" style="display: none; margin-top: 15px;">
+          <img id="imgFig212" alt="Вікно Додати до архіву мал 2.12" class="ref-img-large">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== БЛОК 4. ПРАКТИКУМ: КОНТЕКСТНЕ МЕНЮ ==================== -->
+    <section id="block4" class="content-block">
+      <div class="section-tag">Блок 04 // Симуляція операційної системи</div>
+      <h2 class="section-title">Практикум: Робота через Контекстне меню</h2>
+      <p class="section-intro">
+        У повсякденній роботі адміністратори не щоразу запускають саму програму — найшвидші операції робляться правою кнопкою миші (мал. 2.14 підручника).
+      </p>
+
+      <!-- ТРЕНУВАЛЬНА ПАНЕЛЬ ЗАВДАНЬ -->
+      <div class="missions-bar">
+        <div class="mission-goal">
+          <span class="mission-flag">🎯 Поточне завдання:</span>
+          <span id="contextMissionTitle" class="mission-desc">Місія 1: Створи захищений архів через контекстне меню</span>
+        </div>
+        <div class="mission-xp-badge" id="contextMissionReward">+20 XP</div>
+      </div>
+
+      <!-- ВІРТУАЛЬНИЙ РОБОЧИЙ СТІЛ З ФАЙЛАМИ -->
+      <div class="os-desktop" id="virtualDesktop" oncontextmenu="return false;">
+        <div class="desktop-hint">👆 Клацни правою кнопкою миші (або натисни й утримуй на телефоні) на потрібному файлі:</div>
+        
+        <div class="desktop-files">
+          <!-- Файл 1: Звичайний файл (документ) -->
+          <div class="desktop-icon" id="targetDocFile" onclick="selectDeskIcon(this)" oncontextmenu="showContextMenu(event, 'file')">
+            <div class="icon-pic">📄</div>
+            <div class="icon-label">Звіт_відділу.docx</div>
+          </div>
+
+          <!-- Файл 2: Архівний файл -->
+          <div class="desktop-icon" id="targetZipFile" onclick="selectDeskIcon(this)" oncontextmenu="showContextMenu(event, 'archive')">
+            <div class="icon-pic">📦</div>
+            <div class="icon-label">Проєкт_2026.zip</div>
+          </div>
+
+          <!-- Файл 3: SFX-архів -->
+          <div class="desktop-icon" id="targetSfxFile" onclick="selectDeskIcon(this)" oncontextmenu="showContextMenu(event, 'sfx')">
+            <div class="icon-pic">⚙️</div>
+            <div class="icon-label">SetupData.exe</div>
+          </div>
+        </div>
+
+        <!-- ВИПАДНЕ КОНТЕКСТНЕ МЕНЮ WINDOWS -->
+        <div id="osContextMenu" class="context-menu" style="display: none;">
+          <div class="cm-item" onclick="handleCmAction('open')">Відкрити</div>
+          <div class="cm-item" onclick="handleCmAction('print')">Друк</div>
+          <div class="cm-separator"></div>
+
+          <!-- ПІДМЕНЮ 7-ZIP (мал. 2.14) -->
+          <div class="cm-item has-submenu" id="cm7zipParent" onmouseenter="toggleCmSubmenu(true)">
+            <span>🗜️ 7-Zip</span>
+            <span class="arrow">▶</span>
+
+            <div class="cm-submenu" id="cm7zipSubmenu">
+              <!-- Пункти для звичайних файлів -->
+              <div class="cm-file-only">
+                <div class="cm-item" onclick="handleCmAction('7z_add_dlg')">Додати до архіву...</div>
+                <div class="cm-item" onclick="handleCmAction('7z_add_quick_7z')">Додати до "Звіт_відділу.7z"</div>
+                <div class="cm-item" onclick="handleCmAction('7z_add_quick_zip')">Додати до "Звіт_відділу.zip"</div>
+              </div>
+
+              <!-- Пункти для архівних файлів (мал 2.14) -->
+              <div class="cm-arch-only">
+                <div class="cm-item" onclick="handleCmAction('7z_open_archive')">Відкрити архів</div>
+                <div class="cm-item" onclick="handleCmAction('7z_extract_dlg')">Видобути файли...</div>
+                <div class="cm-item" onclick="handleCmAction('7z_extract_here')">Видобути до поточної папки</div>
+                <div class="cm-item" onclick="handleCmAction('7z_extract_folder')">Видобути до "Проєкт_2026\"</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cm-separator"></div>
+          <div class="cm-item" onclick="handleCmAction('cut')">Вирізати</div>
+          <div class="cm-item" onclick="handleCmAction('copy')">Копіювати</div>
+          <div class="cm-item" onclick="handleCmAction('delete')">Видалити</div>
+          <div class="cm-item" onclick="handleCmAction('props')">Властивості</div>
+        </div>
+      </div>
+
+      <!-- ЗВОРОТНИЙ ЗВ'ЯЗОК СИМУЛЯТОРА МЕНЮ -->
+      <div class="context-feedback-box" id="contextFeedbackBox">
+        <span class="fb-icon">💡</span>
+        <span id="contextFeedbackText">Клацни правою кнопкою миші на <strong>Звіт_відділу.docx</strong>, відкрий підменю 7-Zip та обери <strong>«Додати до архіву...»</strong>.</span>
+      </div>
+
+      <div class="fig-compare-btn-wrap" style="margin-top: 15px;">
+        <button class="action-btn-secondary" onclick="toggleOriginalFig('fig214')">Показати оригінальне контекстне меню (мал. 2.14 з підручника)</button>
+      </div>
+      <div id="fig214Holder" class="original-fig-holder" style="display: none; margin-top: 10px;">
+        <img id="imgFig214" alt="Контекстне меню архівного файлу мал 2.14" class="ref-img-large">
+      </div>
+    </section>
+
+    <!-- ==================== БЛОК 5. ЕКСПЕРИМЕНТАЛЬНА ЛАБОРАТОРІЯ: КОЕФІЦІЄНТ К ==================== -->
+    <section id="block5" class="content-block">
+      <div class="section-tag">Блок 05 // Дослідницький хаб (Завдання 5–6)</div>
+      <h2 class="section-title">Експериментальна лабораторія: «Коефіцієнт стиснення»</h2>
+      <p class="section-intro">
+        Згідно з підручником (стор. 48–49), ефективність архівування оцінюють за формулою коефіцієнта стиснення:
+      </p>
+
+      <div class="math-banner">
+        <div class="math-formula-box">
+          <span class="formula-var">K</span>
+          <span class="formula-eq">=</span>
+          <div class="fraction-box">
+            <span class="numerator">Розмір файлу (файлів) до стиснення</span>
+            <span class="denom-divider"></span>
+            <span class="denominator">Розмір файлу (файлів) після стиснення</span>
+          </div>
+        </div>
+        <div class="math-meaning">
+          Якщо <strong>K &gt; 1</strong>, розмір зменшився у <strong>K</strong> разів. Якщо <strong>K ≈ 1</strong>, стиснення неефективне (файл уже був стиснутий раніше).
+        </div>
+      </div>
+
+      <!-- ІНТЕРАКТИВНИЙ КАЛЬКУЛЯТОР-ЕКСПЕРИМЕНТАТОР -->
+      <div class="lab-dashboard">
+        <div class="lab-controls">
+          <div class="form-group">
+            <label>1. Обери тип даних для експерименту:</label>
+            <div class="data-type-chips">
+              <button class="chip active" onclick="setLabData('bmp', this)">🖼️ Растровий BMP (несжатий)</button>
+              <button class="chip" onclick="setLabData('txt', this)">📝 Текстовий TXT / DOC</button>
+              <button class="chip" onclick="setLabData('jpg', this)">📸 Фото JPEG (уже стиснуто)</button>
+              <button class="chip" onclick="setLabData('mp3', this)">🎵 Аудіо MP3 (уже стиснуто)</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>2. Метод стиснення (Завдання 6):</label>
+            <select id="labMethod" class="lab-select" onchange="runCompressionLab()">
+              <option value="LZMA2">LZMA2 (стандартний для 7z)</option>
+              <option value="LZMA">LZMA</option>
+              <option value="PPMd">PPMd (спеціалізований для тексту)</option>
+              <option value="BZip2">BZip2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>3. Ступінь стиснення (Завдання 5):</label>
+            <select id="labLevel" class="lab-select" onchange="runCompressionLab()">
+              <option value="0">Без стиснення</option>
+              <option value="1">Найшвидше</option>
+              <option value="2">Швидке</option>
+              <option value="3" selected>Нормальне</option>
+              <option value="4">Максимальне</option>
+              <option value="5">Ультра</option>
+            </select>
+          </div>
+
+          <button class="action-btn" onclick="runCompressionLab()">🚀 Запустити стиснення</button>
+        </div>
+
+        <!-- РЕЗУЛЬТАТИ ТА НАОЧНИЙ ГРАФІК -->
+        <div class="lab-visualization">
+          <div class="k-stat-card">
+            <div class="k-label">Коефіцієнт стиснення (K):</div>
+            <div class="k-value" id="labKValue">3.75x</div>
+            <div class="k-comment" id="labKComment">Відмінний результат! Файл зменшився майже в 4 рази.</div>
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-row">
+              <div class="chart-meta">
+                <span>До стиснення</span>
+                <strong id="labSizeBefore">10 000 КБ</strong>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar bar-before" style="width: 100%;">100%</div>
+              </div>
+            </div>
+
+            <div class="chart-row">
+              <div class="chart-meta">
+                <span>Після стиснення</span>
+                <strong id="labSizeAfter">2 667 КБ</strong>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar bar-after" id="labBarAfter" style="width: 26.6%;">26.6%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lab-insight-box" id="labInsight">
+            📌 <strong>Висновок дослідника:</strong> Растрові малюнки BMP містять величезну надлишковість (повторювані пікселі), тому стискаються надзвичайно добре (\(K \ge 3.5\)). Натомість JPEG та MP3 вже стиснуті всередині, тож архіватор майже не змінить їх розмір.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== БЛОК 6. САМОКОНТРОЛЬ ТА ПЕРЕВІРКА ВМІНЬ ==================== -->
+    <section id="block6" class="content-block">
+      <div class="section-tag">Блок 06 // Ситуаційний полігон</div>
+      <h2 class="section-title">Самоконтроль: Екзамен Архіваріуса</h2>
+      <p class="section-intro">
+        Розв'яжи три типи прикладних завдань, щоб отримати максимальний кваліфікаційний розряд.
+      </p>
+
+      <!-- ЧАСТИНА А: РОЗСОРТУЙ ФОРМАТИ (Drag/Click) -->
+      <div class="exam-subpart">
+        <h3 class="subsection-title">1. Сортувальник: Архіви чи звичайні файли?</h3>
+        <p>Клацни по значку, щоб відправити його у правильний контейнер (+20 XP):</p>
+
+        <div class="sort-pool" id="sortPool">
+          <div class="sort-tag" data-type="archive" onclick="handleSortItem(this)">.7z</div>
+          <div class="sort-tag" data-type="regular" onclick="handleSortItem(this)">.docx</div>
+          <div class="sort-tag" data-type="archive" onclick="handleSortItem(this)">.zip</div>
+          <div class="sort-tag" data-type="regular" onclick="handleSortItem(this)">.mp3</div>
+          <div class="sort-tag" data-type="archive" onclick="handleSortItem(this)">.rar</div>
+          <div class="sort-tag" data-type="archive" onclick="handleSortItem(this)">.tar</div>
+          <div class="sort-tag" data-type="regular" onclick="handleSortItem(this)">.bmp</div>
+          <div class="sort-tag" data-type="archive" onclick="handleSortItem(this)">SFX (.exe)</div>
+        </div>
+
+        <div class="sort-baskets">
+          <div class="basket" id="basketArchive">
+            <div class="basket-head">📦 Архівні формати (Архіви)</div>
+            <div class="basket-content" id="basketArchiveContent"></div>
+          </div>
+          <div class="basket" id="basketRegular">
+            <div class="basket-head">📄 Звичайні файли (Не архіви)</div>
+            <div class="basket-content" id="basketRegularContent"></div>
+          </div>
+        </div>
+        <div class="q-feedback" id="sortFeedback"></div>
+      </div>
+
+      <!-- ЧАСТИНА Б: СИТУАЦІЙНА ЗАДАЧА -->
+      <div class="exam-subpart" style="margin-top: 30px;">
+        <h3 class="subsection-title">2. Ситуаційна задача адміністратора</h3>
+        <div class="scenario-card">
+          <div class="scenario-role">💼 Кейс із практики:</div>
+          <p class="scenario-text">
+            Тобі терміново потрібно надіслати великий звіт колезі, але ти знаєш, що на його робочому комп'ютері немає прав встановлювати будь-які програми (і архіватор 7-Zip чи WinRAR відсутній). Який варіант створення архіву врятує ситуацію?
+          </p>
+          <div class="q-options">
+            <label class="q-option">
+              <input type="radio" name="scen1" value="sfx">
+              <span class="opt-box"></span>
+              <span class="opt-text"><strong>SFX-архів</strong> (саморозпаковний з розширенням .exe) — він містить модуль розпакування і виконає розархівування сам</span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="scen1" value="tar">
+              <span class="opt-box"></span>
+              <span class="opt-text">Звичайний архів TAR без стиснення</span>
+            </label>
+            <label class="q-option">
+              <input type="radio" name="scen1" value="ultra">
+              <span class="opt-box"></span>
+              <span class="opt-text">Формат 7z зі ступенем стиснення «Ультра»</span>
+            </label>
+          </div>
+          <div class="q-feedback" id="scen1_fb"></div>
+          <button class="action-btn" onclick="checkScenario1()">Підтвердити рішення (+15 XP)</button>
+        </div>
+      </div>
+
+      <!-- ЧАСТИНА В: РЕЖИМИ ОНОВЛЕННЯ (Мал 2.13) -->
+      <div class="exam-subpart" style="margin-top: 30px;">
+        <h3 class="subsection-title">3. Зіставлення: Режими оновлення файлів в архіві (мал. 2.13)</h3>
+        <p>Підручник (стор. 45) описує 4 режими. Зістав команду з її точною функцією (+20 XP):</p>
+
+        <div class="match-grid">
+          <!-- Режим 1 -->
+          <div class="match-item">
+            <span class="match-cmd">1. Додати та замінити файли</span>
+            <select class="match-select" id="matchOpt1">
+              <option value="">-- Обери призначення --</option>
+              <option value="synch">Видаляє з архіву те, чого немає у вибраних, і додає нові</option>
+              <option value="add_rep">Додавання нових файлів і повна заміна існуючих на ті, що додаються</option>
+              <option value="upd_rep">Оновлення раніше змінених файлів та додавання нових</option>
+              <option value="upd_only">Оновлення ТІЛЬКИ тих файлів, що вже є в архіві, і лише на новіші</option>
+            </select>
+          </div>
+
+          <!-- Режим 2 -->
+          <div class="match-item">
+            <span class="match-cmd">2. Оновити та замінити файли</span>
+            <select class="match-select" id="matchOpt2">
+              <option value="">-- Обери призначення --</option>
+              <option value="synch">Видаляє з архіву те, чого немає у вибраних, і додає нові</option>
+              <option value="add_rep">Додавання нових файлів і повна заміна існуючих на ті, що додаються</option>
+              <option value="upd_rep">Оновлення раніше змінених файлів та додавання нових</option>
+              <option value="upd_only">Оновлення ТІЛЬКИ тих файлів, що вже є в архіві, і лише на новіші</option>
+            </select>
+          </div>
+
+          <!-- Режим 3 -->
+          <div class="match-item">
+            <span class="match-cmd">3. Оновити існуючі файли</span>
+            <select class="match-select" id="matchOpt3">
+              <option value="">-- Обери призначення --</option>
+              <option value="synch">Видаляє з архіву те, чого немає у вибраних, і додає нові</option>
+              <option value="add_rep">Додавання нових файлів і повна заміна існуючих на ті, що додаються</option>
+              <option value="upd_rep">Оновлення раніше змінених файлів та додавання нових</option>
+              <option value="upd_only">Оновлення ТІЛЬКИ тих файлів, що вже є в архіві, і лише на новіші</option>
+            </select>
+          </div>
+
+          <!-- Режим 4 -->
+          <div class="match-item">
+            <span class="match-cmd">4. Синхронізувати файли</span>
+            <select class="match-select" id="matchOpt4">
+              <option value="">-- Обери призначення --</option>
+              <option value="synch">Видаляє з архіву те, чого немає у вибраних, і додає нові</option>
+              <option value="add_rep">Додавання нових файлів і повна заміна існуючих на ті, що додаються</option>
+              <option value="upd_rep">Оновлення раніше змінених файлів та додавання нових</option>
+              <option value="upd_only">Оновлення ТІЛЬКИ тих файлів, що вже є в архіві, і лише на новіші</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="q-feedback" id="matchFeedback"></div>
+        <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
+          <button class="action-btn" onclick="checkMatchingModes()">Перевірити відповідність</button>
+          <button class="action-btn-secondary" onclick="toggleOriginalFig('fig213')">Оригінальний список (мал. 2.13 з книги)</button>
+        </div>
+        <div id="fig213Holder" class="original-fig-holder" style="display: none; margin-top: 10px;">
+          <img id="imgFig213" alt="Список Режим оновлення мал 2.13" class="ref-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== БЛОК 7. ПІДСУМКИ ТА ДОМАШНІЙ ЧЕКЛИСТ ==================== -->
+    <section id="block7" class="content-block">
+      <div class="section-tag">Блок 07 // Фінал експедиції</div>
+      <h2 class="section-title">Сертифікат архіваріуса & Практична робота №2</h2>
+      <p class="section-intro">
+        Вітаємо! Ти пройшов усі випробування цифрової експедиції. Зафіксуй свій тріумф сертифікатом та збережи алгоритм для уроку в класі.
+      </p>
+
+      <!-- СЕРТИФІКАТ ДЛЯ ДРУКУ / ЗБЕРЕЖЕННЯ -->
+      <div class="certificate-wrap" id="certificateBox">
+        <div class="cert-border">
+          <div class="cert-header">
+            <span class="cert-stamp">VERIFIED 2026</span>
+            <div class="cert-org">МІНІСТЕРСТВО ЦИФРОВИХ ЕКСПЕДИЦІЙ • 8 КЛАС</div>
+            <h3 class="cert-main-title">СЕРТИФІКАТ СИСТЕМНОГО АРХІВАРІУСА</h3>
+          </div>
+
+          <div class="cert-body">
+            <p>Цим документом засвідчується, що курсант-дослідник</p>
+            <div class="cert-name-input-wrap">
+              <input type="text" id="certStudentName" placeholder="Введіть ваше прізвище та ім'я" value="Учень 8-го класу" oninput="updateCertPreview()">
+            </div>
+            <p>успішно опанував технології стиснення даних без втрат, алгоритми 7-Zip, контекстне керування та розрахунок коефіцієнта компресії з результатом:</p>
+
+            <div class="cert-score-banner">
+              <div class="cert-score-item">
+                <span class="cs-num" id="certScoreVal">0 XP</span>
+                <span class="cs-lbl">Загальний бал</span>
+              </div>
+              <div class="cert-score-item">
+                <span class="cs-num" id="certRankVal">Стажер</span>
+                <span class="cs-lbl">Кваліфікація</span>
+              </div>
+              <div class="cert-score-item">
+                <span class="cs-num" id="certDateVal">27.09.2026</span>
+                <span class="cs-lbl">Дата верифікації</span>
+              </div>
+            </div>
+
+            <div class="cert-code">
+              Унікальний код верифікації для вчителя: <strong id="certHashCode">ZIP-8-0000-EXP</strong>
+            </div>
+          </div>
+
+          <div class="cert-footer">
+            <span>Інформатика 8 клас • § 2.2</span>
+            <span>Підпис: <em>Antigravity Archiver Engine</em></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-actions">
+        <button class="action-btn" onclick="window.print()">🖨️ Роздрукувати / Зберегти як PDF</button>
+        <button class="action-btn-secondary" onclick="copyCertReport()">📋 Скопіювати текстовий звіт для вчителя</button>
+      </div>
+
+      <!-- ЧЕКЛИСТ ПРАКТИЧНОЇ РОБОТИ №2 -->
+      <div class="practicum-card">
+        <div class="practicum-head">
+          <div class="practicum-badge">Інструкційна картка</div>
+          <h3>Практична робота № 2 (підручник, стор. 50): «Архівування та розархівування даних»</h3>
+        </div>
+        <p class="practicum-desc">Покроковий алгоритм дій для виконання роботи за комп'ютером у класі:</p>
+
+        <div class="checklist-items">
+          <label class="check-step">
+            <input type="checkbox" onchange="saveChecklistState()">
+            <span class="step-check"></span>
+            <span class="step-text"><strong>Крок 1.</strong> Запустити 7-Zip File Manager (Пуск ⇒ 7-zip). Дотримуватися вимог безпеки життєдіяльності!</span>
+          </label>
+
+          <label class="check-step">
+            <input type="checkbox" onchange="saveChecklistState()">
+            <span class="step-check"></span>
+            <span class="step-text"><strong>Крок 2.</strong> Створити у власній папці архів із перших 16 файлів папки <code>Розділ 2\Пункт 2.2\Малюнки</code> з параметрами: ім'я — <em>фотографії</em>, формат — <em>7z</em>, ступінь — <em>швидкий</em>, галочка <em>Створити SFX-архів</em>.</span>
+          </label>
+
+          <label class="check-step">
+            <input type="checkbox" onchange="saveChecklistState()">
+            <span class="step-check"></span>
+            <span class="step-text"><strong>Крок 3.</strong> Визначити й записати в зошит: розмір до стиснення, розмір утвореного SFX-архіву та обчислити коефіцієнт стиснення \(K = \text{Розмір до} / \text{Розмір після}\).</span>
+          </label>
+
+          <label class="check-step">
+            <input type="checkbox" onchange="saveChecklistState()">
+            <span class="step-check"></span>
+            <span class="step-text"><strong>Крок 4.</strong> Створити папку <em>Копія архіву</em>, скопіювати туди файл та видалити з нього останні 5 файлів.</span>
+          </label>
+
+          <label class="check-step">
+            <input type="checkbox" onchange="saveChecklistState()">
+            <span class="step-check"></span>
+            <span class="step-text"><strong>Крок 5.</strong> Через контекстне меню Провідника видобути всі файли з архіву в створену папку <em>Мої малюнки</em>.</span>
+          </label>
+
+          <label class="check-step">
+            <input type="checkbox" onchange="saveChecklistState()">
+            <span class="step-check"></span>
+            <span class="step-text"><strong>Крок 6.</strong> Через програму 7-Zip видобути перші 10 файлів у папку <em>1_10</em>. Закрити всі відкриті вікна.</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>© 2026 Інтерактивний навчальний комплекс «Цифрова експедиція: Таємниці стиснення даних». Розроблено за матеріалами підручника «Інформатика» 8 клас (§ 2.2).</p>
+      <p class="footer-sub">Всі права на оригінальний навчальний текст належать авторам підручника. Веб-тренажер оптимізовано для уроків інформатики.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
